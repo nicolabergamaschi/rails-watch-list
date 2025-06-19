@@ -1,0 +1,28 @@
+<div class="d-flex flex-column" style="margin-top: 30px;">
+  <div class="image-wrapper" style="order: 2; width: 100%; height: 50vh; position: relative;">
+    <%= image_tag("https://res.cloudinary.com/sv-valleyforge/image/upload/v1749683514/cms_resources/clients/vfcvb/958f02b0_cf60_4e27_809a_c922823c507b_e449dd31-a36e-4374-aacb-e66598216df1.jpg", alt: "rss feed", style: "width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transform-origin: bottom right;") %>
+    <div class="overlay-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+      <h1 class="text-white text-center"><strong>Save any kind of movies</strong></h1>
+    </div>
+  </div>
+  <div class="order-2 d-flex justify-content-center" style="min-height: 50vh;">
+    <div class="cards-container d-flex flex-row" style="width: 80vw;">
+      <!-- Cards section -->
+      <div class="my-lists d-flex flex-row gap-3 flex-wrap align-content-start m-5" style="flex: 1;">
+        <% @lists.each do |list|%>
+          <div class="card" style="width: 18rem; height: 9rem; border-radius: 20px;">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <h5 class="card-title text-center fw-bold"><%= list.name%></h5>
+              <%= link_to "See full list", "/lists/#{list.id}", class: "btn btn-primary rounded-pill" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Button section aligned to top -->
+      <div class="create-list-btn d-flex align-items-start m-5" style="margin-left: 2rem;">
+        <%= link_to "Create a new list", lists_new_path, class: "btn btn-success", style: "border-radius: 20px;" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,18 @@
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+    <div class="wrapper d-flex flex-column">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between p-2">
+        <div class="nav-bar-home-link">
+          <a class="navbar-brand" href="#">🍿</a>
+        </div>
+        <div class="nav-bar-options">
+          <a class="navbar-brand" href="#">My list</a>
+          <a class="navbar-brand" href="#">New list</a>
+        </div>
+      </nav>
+
+      <%= yield %>
+    </div>
+    </body>
 </html>
