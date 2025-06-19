@@ -71,3 +71,8 @@ group :development do
 end
 
 gem 'rspec-rails', group: [ :test ]
+
+
+gem 'open-uri'
+
+gem 'json'
