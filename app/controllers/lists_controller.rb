@@ -8,6 +8,7 @@ class ListsController < ApplicationController
   end
 
   def new
+    @lists = List.all
     @list = List.new
   end
 
