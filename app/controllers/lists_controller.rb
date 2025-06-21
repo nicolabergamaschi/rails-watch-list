@@ -1,10 +1,13 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+    @reviews = Reviews.all
   end
 
   def show
     @list = List.find(params[:id])
+    @review = Review.new  # Empty review for the form
+    @reviews = @list.reviews  # Get reviews for this specific list
   end
 
   def new
@@ -25,6 +28,10 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:name)
+  end
+
+    def review_params
+    params.require(:review).permit(:comment, :rating)
   end
 
 end

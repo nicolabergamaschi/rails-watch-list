@@ -18,12 +18,36 @@
             <h4><strong><%= bookmark.movie.title %></strong></h4>
             <h6>" <%= bookmark.movie.overview %> "</h6>
             <h6><strong>⭐ <%= bookmark.movie.rating %> </strong></h6>
+            <%= link_to "Delete", "/lists/#{@list.id}/bookmarks/#{bookmark.id}", class: "text-danger pt-2 d-flex justify-content-end", data: { turbo_method: :delete, turbo_confirm: "Are you sure about deleting this movie from the list?"} %>
           </li>
         </ul>
           <% end%>
       </div>
-      <div class="create-list-btn d-flex align-items-start m-5" style="margin-left: 2rem;">
-        <%= link_to "Add a movie", "#{@list.id}/bookmarks/new", class: "btn btn-success", style: "border-radius: 20px;" %>
+      <div class="button-form-wrapper d-flex flex-column align-items-center m-5">
+        <div class="button-container pb-3 mb-3">
+          <%= link_to "Add a movie", "#{@list.id}/bookmarks/new", class: "btn btn-success", style: "border-radius: 20px;" %>
+        </div>
+        <div style="height:30px; width: 80%; border-top: 1px solid rgb(216, 216, 216);"></div>
+        <div class="form-container shadow p-4" style="border-radius: 15px;">
+          <%= simple_form_for [@list, @review] do |f| %>
+            <%= f.input :comment, placeholder: "Add a comment about the list...", input_html: { rows: 6 } %>
+            <%= f.input :rating %>
+            <%= f.button :submit, class: "btn btn-primary mt-5 w-100", style: "border-radius: 20px" %>
+          <% end %>
+        </div>
+        <div style="height:30px; width: 80%; border-bottom: 1px solid rgb(216, 216, 216);"></div>
+        <div class="reviews-list" style="list-style: none;">
+            <% @reviews.each_with_index do |review, index| %>
+              <li style="list-style: none;">
+                <div class="bg-light shadow m-2 mt-4 p-3" style="width: 100%; border-radius: 15px;">
+                  <h5 class="text-secondary">Review <%= index + 1 %></h5>
+                  <%= review.comment %>
+                  <p></p>
+                  <%= '⭐' * review.rating %>
+                </div>
+              </li>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>

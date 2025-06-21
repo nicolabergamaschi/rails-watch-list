@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4" style="width: 400px;">
+    <h3 class="text-center mb-4">Add a Review</h3>
+
+    <%= simple_form_for @review do |f| %>
+      <%= f.input :comment, placeholder: "Add your comment here...", input_html: { rows: 4 } %>
+      <%= f.input :rating, collection: 1..5, prompt: "Select a rating" %>
+      <%= f.button :submit, "Add Review", class: "btn btn-primary w-100 mt-3" %>
+    <% end %>
+
+    <%= link_to "Back", root_path, class: "btn btn-secondary w-100 mt-2" %>
+  </div>
+</div>
