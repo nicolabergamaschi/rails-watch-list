@@ -14,11 +14,16 @@
         <ul class="d-flex flex-column bg-white" style="width: 30vw; padding: 2rem;">
           <div class="card bg-light mb-3" style="height: 200px; background-image: url(<%=bookmark.movie.poster_url%>); list-style: none; background-size:cover">
           </div>
-          <li class="bg-white" style="list-style: none; height: 200px;">
+          <li class="bg-white" style="list-style: none;">
             <h4><strong><%= bookmark.movie.title %></strong></h4>
             <h6>" <%= bookmark.movie.overview %> "</h6>
             <h6><strong>⭐ <%= bookmark.movie.rating %> </strong></h6>
-            <%= link_to "Delete", "/lists/#{@list.id}/bookmarks/#{bookmark.id}", class: "text-danger pt-2 d-flex justify-content-end", data: { turbo_method: :delete, turbo_confirm: "Are you sure about deleting this movie from the list?"} %>
+            <div style="padding-top: 1rem;">
+              <i class="fa-solid fa-quote-left" style="font-size: medium;"></i> <h6 class="bookmark-comment" style="font-size: smaller;"> <%= bookmark.comment %> </h6>
+              <%= link_to "Delete", "/lists/#{@list.id}/bookmarks/#{bookmark.id}", class: "text-danger pt-2 d-flex justify-content-end", data: { turbo_method: :delete, turbo_confirm: "Are you sure about deleting this movie from the list?"} %>
+            </div>
+
+
           </li>
         </ul>
           <% end%>
