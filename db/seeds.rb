@@ -13,19 +13,12 @@ require 'json'
 
 top_rated_url = 'https://tmdb.lewagon.com/movie/top_rated'
 config_url = 'https://tmdb.lewagon.com/configuration'
-# in order to create a functioning url to retrieve the poster images I'll have to assemble it by taking thre
-# different information from 2 API urls
-# 1. in config_url I can retrieve the base url which is the first part of my path:
-# api = {
-#       change_keys: [values],
-#       images: { base_url: ""http://image.tmdb.org/t/p/"}
-#       }
-#
-# 2. in top_rated_url we can get here the bottom part of the
+
 base_url = URI.open(config_url) do |stream|
   data = JSON.parse(stream.read)
   data['images']['base_url']
 end
+
 URI.open(top_rated_url) do |stream|
   second_part_url = JSON.parse(stream.read)
   second_part_url['results'].each do |result|
